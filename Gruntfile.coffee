@@ -12,7 +12,7 @@ module.exports = (grunt)->
         watch:
             cs:
                 files: ['strict.coffee']
-                tasks: ['coffee']
+                tasks: ['default']
         shell:
             test:
                 command: 'node strict.js'
