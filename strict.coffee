@@ -37,8 +37,12 @@ Strict =
         assert.throws (() -> eval('++arguments') ), 'prefix increment/decrement "arguments"'        
     callerCallee: () ->
         "use strict"
-        assert.throws (() -> eval('callerCallee.caller')), 'Function.caller'
+        assert.throws (() -> eval('callerCallee.caller')), 'function.caller'
         assert.throws (() -> eval('arguments.callee')), 'arguments.callee'
+    argumentsDynamicShare: (arg) ->
+        "use strict"
+        arg = 1
+        assert.notEqual arguments[0], arg, 'arguments do not dynamically share'
 
 
 
