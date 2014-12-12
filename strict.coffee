@@ -65,6 +65,25 @@ Strict =
     evalCreatesNewEnvironment: () ->
         "use strict"
         assert.equal 'undefined', eval('(function(){"use strict";eval("var a=2;");return typeof a;})()'), '"eval" creates a new variable environment'
+    #If this is evaluated within strict mode code, then the this value is not coerced to an object. A this value of null or undefined is not converted to the global object and primitive values are not converted to wrapper objects. The this value passed via a function call (including calls made using Function.prototype.apply and Function.prototype.call) do not coerce the passed this value to an object (10.4.3, 11.1.1, 15.3.4.3, 15.3.4.4).
+
+    #When a delete operator occurs within strict mode code, a SyntaxError is thrown if its UnaryExpression is a direct reference to a variable, function argument, or function name(11.4.1).
+
+    #When a delete operator occurs within strict mode code, a TypeError is thrown if the property to be deleted has the attribute { [[Configurable]]:false } (11.4.1).
+
+    #It is a SyntaxError if a VariableDeclaration or VariableDeclarationNoIn occurs within strict code and its Identifier is eval or arguments (12.2.1).
+
+    #Strict mode code may not include a WithStatement. The occurrence of a WithStatement in such a context is an SyntaxError (12.10).
+
+    #It is a SyntaxError if a TryStatement with a Catch occurs within strict code and the Identifier of the Catch production is eval or arguments (12.14.1)
+
+    #It is a SyntaxError if the identifier eval or arguments appears within a FormalParameterList of a strict mode FunctionDeclaration or FunctionExpression (13.1)
+
+    #A strict mode function may not have two or more formal parameters that have the same name. An attempt to create such a function using a FunctionDeclaration, FunctionExpression, or Function constructor is a SyntaxError (13.1, 15.3.2).
+
+    #An implementation may not extend, beyond that defined in this specification, the meanings within strict mode functions of properties named caller or arguments of function instances. ECMAScript code may not create or modify properties with these names on function objects that correspond to strict mode functions (10.6, 13.2, 15.3.4.5.3).
+
+    #It is a SyntaxError to use within strict mode code the identifiers eval or arguments as the Identifier of a FunctionDeclaration or FunctionExpression or as a formal parameter name (13.1). Attempting to dynamically define such a strict mode function using the Function constructor (15.3.2) will throw a SyntaxError exception.
 
 
 
