@@ -61,6 +61,10 @@ Strict =
     argumentsInPropertySetParameterList: () ->
         "use strict"
         assert.throws (() -> eval('var a = {set name(arguments){}}')), 'arguments in property assignment list'
+    #Strict mode eval code cannot instantiate variables or functions in the variable environment of the caller to eval. Instead, a new variable environment is created and that environment is used for declaration binding instantiation for the eval code (10.4.2).
+    evalCreatesNewEnvironment: () ->
+        "use strict"
+        assert.equal 'undefined', eval('(function(){"use strict";eval("var a=2;");return typeof a;})()'), '"eval" creates a new variable environment'
 
 
 
