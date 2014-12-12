@@ -27,6 +27,14 @@ Strict =
         assert.throws (() -> obj.name = 1), 'assignment to unwritable'
         assert.throws (() -> obj.age = 22 ), 'assignment a unsettable'
         assert.throws (() -> obj.newV = 0 ), 'add a new property'
+    evalArguments: () ->
+        "use strict"
+        assert.throws (() -> eval('eval = 1')), 'assignment to "eval"'        
+        assert.throws (() -> eval('arguments = 1')), 'assignment to "arguments"'        
+        assert.throws (() -> eval('eval++') ), 'increment/decrement "eval"'        
+        assert.throws (() -> eval('arguments++') ), 'increment/decrement "arguments"'        
+        assert.throws (() -> eval('++eval') ), 'prefix increment/decrement "eval"'        
+        assert.throws (() -> eval('++arguments') ), 'prefix increment/decrement "arguments"'        
 
 
 
