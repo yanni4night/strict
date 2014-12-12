@@ -35,7 +35,10 @@ Strict =
         assert.throws (() -> eval('arguments++') ), 'increment/decrement "arguments"'        
         assert.throws (() -> eval('++eval') ), 'prefix increment/decrement "eval"'        
         assert.throws (() -> eval('++arguments') ), 'prefix increment/decrement "arguments"'        
-
+    callerCallee: () ->
+        "use strict"
+        assert.throws (() -> eval('callerCallee.caller')), 'Function.caller'
+        assert.throws (() -> eval('arguments.callee')), 'arguments.callee'
 
 
 
