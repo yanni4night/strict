@@ -1,0 +1,22 @@
+{
+  "name": "strict",
+  "version": "0.1.0",
+  "description": "ES5 strict mode testing cases",
+  "main": "strict.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yanni4night/strict.git"
+  },
+  "keywords": [
+    "strict"
+  ],
+  "author": "yanni4night@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yanni4night/strict/issues"
+  },
+  "homepage": "https://github.com/yanni4night/strict"
+}
