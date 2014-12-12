@@ -57,6 +57,10 @@ Strict =
     duplicatedProperties: () ->
         "use strict"
         assert.throws (() -> eval('{a:1,a:2}')), 'duplicated properties'
+    #It is a SyntaxError if the Identifier "eval" or the Identifier "arguments" occurs as the Identifier in a PropertySetParameterList of a PropertyAssignment that is contained in strict code or if its FunctionBody is strict code (11.1.5).
+    argumentsInPropertySetParameterList: () ->
+        "use strict"
+        assert.throws (() -> eval('var a = {set name(arguments){}}')), 'arguments in property assignment list'
 
 
 
