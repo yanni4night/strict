@@ -102,6 +102,10 @@ Strict =
         assert.throws (() -> eval('with({}){}')), 'with'
 
     #It is a SyntaxError if a TryStatement with a Catch occurs within strict code and the Identifier of the Catch production is eval or arguments (12.14.1)
+    catchEvalArguments: () ->
+        "use strict"
+        assert.throws (() -> eval('try{}catch(eval){}')), 'catch an "eval"'
+        assert.throws (() -> eval('try{}catch(arguments){}')), 'catch an "arguments"'
 
     #It is a SyntaxError if the identifier eval or arguments appears within a FormalParameterList of a strict mode FunctionDeclaration or FunctionExpression (13.1)
 
