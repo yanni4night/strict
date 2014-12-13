@@ -80,6 +80,13 @@ Strict =
         assert.throws (() -> eval('function fn(){};delete fn;')), 'delete function name'
 
     #When a delete operator occurs within strict mode code, a TypeError is thrown if the property to be deleted has the attribute { [[Configurable]]:false } (11.4.1).
+    deleteUnconfigurable: () ->
+        "use strict"
+        a = {};
+        Object.defineProperty a, 'name',
+            value: 'yanni',
+            configurable: false
+        assert.throws (() -> delete a.name), 'delete an unconfigurable property'
 
     #It is a SyntaxError if a VariableDeclaration or VariableDeclarationNoIn occurs within strict code and its Identifier is eval or arguments (12.2.1).
 
@@ -97,7 +104,8 @@ Strict =
 
 
 
-for e of Strict
-    Strict[e]()
+for k, v of Strict
+    console.log 'Testing',k
+    v()
 
 module.exports = Strict
