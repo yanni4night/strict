@@ -121,6 +121,9 @@ Strict =
     #An implementation may not extend, beyond that defined in this specification, the meanings within strict mode functions of properties named caller or arguments of function instances. ECMAScript code may not create or modify properties with these names on function objects that correspond to strict mode functions (10.6, 13.2, 15.3.4.5.3).
 
     #It is a SyntaxError to use within strict mode code the identifiers eval or arguments as the Identifier of a FunctionDeclaration or FunctionExpression or as a formal parameter name (13.1). Attempting to dynamically define such a strict mode function using the Function constructor (15.3.2) will throw a SyntaxError exception.
+    evalArgumentsDeclarationWithFunctionConstructor: () ->
+        assert.throws (() -> new Function('eval','"use strict";return 1;')), 'declare "eval" within Function constructor'
+        assert.throws (() -> new Function('arguments','"use strict";return 1;')), 'declare "arguments" within Function constructor'
 
 
 
