@@ -73,6 +73,11 @@ Strict =
         assert.equal undefined, (() -> return this).apply(undefined), 'apply function'
 
     #When a delete operator occurs within strict mode code, a SyntaxError is thrown if its UnaryExpression is a direct reference to a variable, function argument, or function name(11.4.1).
+    delete: () ->
+        "use strict"
+        assert.throws (() -> eval('var a;delete a;')), 'delete a direct reference'
+        assert.throws ((arg) -> eval('delete arg;')), 'delete function argument'
+        assert.throws (() -> eval('function fn(){};delete fn;')), 'delete function name'
 
     #When a delete operator occurs within strict mode code, a TypeError is thrown if the property to be deleted has the attribute { [[Configurable]]:false } (11.4.1).
 
