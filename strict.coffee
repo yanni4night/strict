@@ -108,6 +108,10 @@ Strict =
         assert.throws (() -> eval('try{}catch(arguments){}')), 'catch an "arguments"'
 
     #It is a SyntaxError if the identifier eval or arguments appears within a FormalParameterList of a strict mode FunctionDeclaration or FunctionExpression (13.1)
+    evalArgumentsAsParameter: ()->
+        "use strict"
+        assert.throws (() -> eval('function(eval){}')), '"eval" as function parameter'
+        assert.throws (() -> eval('function(arguments){}')), '"arguments" as function parameter'
 
     #A strict mode function may not have two or more formal parameters that have the same name. An attempt to create such a function using a FunctionDeclaration, FunctionExpression, or Function constructor is a SyntaxError (13.1, 15.3.2).
 
