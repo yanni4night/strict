@@ -66,6 +66,11 @@ Strict =
         "use strict"
         assert.equal 'undefined', eval('(function(){"use strict";eval("var a=2;");return typeof a;})()'), '"eval" creates a new variable environment'
     #If this is evaluated within strict mode code, then the this value is not coerced to an object. A this value of null or undefined is not converted to the global object and primitive values are not converted to wrapper objects. The this value passed via a function call (including calls made using Function.prototype.apply and Function.prototype.call) do not coerce the passed this value to an object (10.4.3, 11.1.1, 15.3.4.3, 15.3.4.4).
+    thisGlobal: () ->
+        "use strict"
+        assert.equal undefined , (()-> return this)(), 'invoke function directly'
+        assert.equal null, (() -> return this).call(null), 'call function'
+        assert.equal undefined, (() -> return this).apply(undefined), 'apply function'
 
     #When a delete operator occurs within strict mode code, a SyntaxError is thrown if its UnaryExpression is a direct reference to a variable, function argument, or function name(11.4.1).
 
