@@ -26,8 +26,8 @@ Strict =
                 value: 'yanni'
                 writable: false
             'age':
-                get: (n) ->
-                    this.age = n
+                get: () ->
+                    return this._age
         Object.preventExtensions obj
         assert.throws (() -> obj.name = 1), 'assignment to unwritable'
         assert.throws (() -> obj.age = 22 ), 'assignment a unsettable'
@@ -116,7 +116,7 @@ Strict =
     #A strict mode function may not have two or more formal parameters that have the same name. An attempt to create such a function using a FunctionDeclaration, FunctionExpression, or Function constructor is a SyntaxError (13.1, 15.3.2).
     sameNameParameters: () ->
         "use strict"
-        assert.throws (() -> eval('function(a,a){}')), 'same name in parameter list'
+        assert.throws (() -> eval('function(a, a){}')), 'same name in parameter list'
 
     #An implementation may not extend, beyond that defined in this specification, the meanings within strict mode functions of properties named caller or arguments of function instances. ECMAScript code may not create or modify properties with these names on function objects that correspond to strict mode functions (10.6, 13.2, 15.3.4.5.3).
 
