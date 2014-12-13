@@ -97,6 +97,9 @@ Strict =
         assert.throws (() -> eval('for(var arguments in {});')), 'declare a variableNotIn named "arguments"'
 
     #Strict mode code may not include a WithStatement. The occurrence of a WithStatement in such a context is an SyntaxError (12.10).
+    with: () ->
+        "use strict"
+        assert.throws (() -> eval('with({}){}')), 'with'
 
     #It is a SyntaxError if a TryStatement with a Catch occurs within strict code and the Identifier of the Catch production is eval or arguments (12.14.1)
 
