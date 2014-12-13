@@ -89,6 +89,12 @@ Strict =
         assert.throws (() -> delete a.name), 'delete an unconfigurable property'
 
     #It is a SyntaxError if a VariableDeclaration or VariableDeclarationNoIn occurs within strict code and its Identifier is eval or arguments (12.2.1).
+    declareEvalArguments: () ->
+        "use strict"
+        assert.throws (() -> eval('var eval = 1;')), 'declare a variable named "eval"'
+        assert.throws (() -> eval('var arguments = 1;')), 'declare a variable named "arguments"'
+        assert.throws (() -> eval('for(var eval in {});')), 'declare a variableNotIn named "eval"'
+        assert.throws (() -> eval('for(var arguments in {});')), 'declare a variableNotIn named "arguments"'
 
     #Strict mode code may not include a WithStatement. The occurrence of a WithStatement in such a context is an SyntaxError (12.10).
 
