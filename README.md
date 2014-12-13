@@ -4,7 +4,7 @@ strict
 
 Test cases for [ES5 Strict Mode](http://www.ecma-international.org/ecma-262/5.1/#sec-C).
 
-see <blob/master/strict.coffee>
+see (strict.coffee)[https://github.com/yanni4night/strict/blob/master/strict.coffee]
 
 [travis-url]: https://travis-ci.org/yanni4night/strict
 [travis-image]: http://img.shields.io/travis/yanni4night/strict.svg
