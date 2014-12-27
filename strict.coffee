@@ -5,7 +5,7 @@ Strict =
     #The identifiers "implements", "interface", "let", "package", "private", "protected", "public", "static", and "yield" are classified as FutureReservedWord tokens within strict mode code. (7.6.12).
     reservedWords: () ->
         "use strict"
-        reservedWords = ["implements", "interface", "let", "package", "private", "protected", "public", "static", "yield"];
+        reservedWords = ["implements", "interface", "let", "package", "private", "protected", "public", "static", "yield"]
         reservedWords.forEach (word)->
             assert.throws (() -> eval('var ' + word + ' = 1;')), word + ' is reserved word'
     #A conforming implementation, when processing strict mode code, may not extend the syntax of NumericLiteral (7.8.3) to include OctalIntegerLiteral as described in B.1.1.
@@ -35,13 +35,13 @@ Strict =
     #The identifier eval or arguments may not appear as the LeftHandSideExpression of an Assignment operator (11.13) or of a PostfixExpression (11.3) or as the UnaryExpression operated upon by a Prefix Increment (11.4.4) or a Prefix Decrement (11.4.5) operator.
     evalArguments: () ->
         "use strict"
-        assert.throws (() -> eval('eval = 1')), 'assignment to "eval"'        
+        assert.throws (() -> eval('eval = 1')), 'assignment to "eval"'
         assert.throws (() -> eval('arguments = 1')), 'assignment to "arguments"'
         assert.throws (() -> eval('eval++') ), 'increment/decrement "eval"'
         assert.throws (() -> eval('arguments++') ), 'increment/decrement "arguments"'
         assert.throws (() -> eval('++eval') ), 'prefix increment/decrement "eval"'
         assert.throws (() -> eval('++arguments') ), 'prefix increment/decrement "arguments"'
-    #Arguments objects for strict mode functions define non-configurable accessor properties named "caller" and "callee" which throw a TypeError exception on access (10.6).       
+    #Arguments objects for strict mode functions define non-configurable accessor properties named "caller" and "callee" which throw a TypeError exception on access (10.6).
     callerCallee: () ->
         "use strict"
         assert.throws (() -> eval('callerCallee.caller')), 'function.caller'
@@ -82,7 +82,7 @@ Strict =
     #When a delete operator occurs within strict mode code, a TypeError is thrown if the property to be deleted has the attribute { [[Configurable]]:false } (11.4.1).
     deleteUnconfigurable: () ->
         "use strict"
-        a = {};
+        a = {}
         Object.defineProperty a, 'name',
             value: 'yanni',
             configurable: false

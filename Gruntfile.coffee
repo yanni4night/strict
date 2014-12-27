@@ -8,7 +8,7 @@ module.exports = (grunt)->
                 cwd: '.'
                 src: ['strict.coffee']
                 dest: '.'
-                ext: '.js' 
+                ext: '.js'
         watch:
             cs:
                 files: ['strict.coffee']
@@ -16,6 +16,10 @@ module.exports = (grunt)->
         shell:
             test:
                 command: 'node strict.js'
+        coffeelint:
+            options:
+                configFile: '.coffeelintrc'
+            all: ['*.coffee']
 
-    grunt.registerTask 'default', ['coffee', 'shell']
-    grunt.registerTask 'test', ['default']
+    grunt.registerTask 'test', ['coffee', 'shell']
+    grunt.registerTask 'default', ['coffeelint', 'test']
